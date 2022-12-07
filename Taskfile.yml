@@ -1,0 +1,34 @@
+version: '3'
+
+tasks:
+  config:
+    cmds:
+      - echo "Checking the configuration..."
+      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml config
+
+  run:
+    cmds:
+      - echo "Starting the backend..."
+      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+  stop:
+    cmds:
+      - echo "Stopping the backend..."
+      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
+
+  stop-backend:
+    cmds:
+      - echo "Stopping the backend..."
+      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
+  restart:
+    cmds:
+      - echo "Restarting the backend..."
+      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml restart  
+      
+  run-backend:
+    cmds:
+      - echo "Starting the backend..."
+      - task build
+      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+  
