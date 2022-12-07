@@ -28,7 +28,16 @@ tasks:
   run-backend:
     cmds:
       - echo "Starting the backend..."
-      - task build
       - docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+  logs:
+    cmds:
+      - echo "Showing the logs..."
+      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml logs -f 
+  status:
+    cmds:
+      - echo "Showing the status..."
+      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml ps
+
 
   
