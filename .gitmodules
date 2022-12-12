@@ -1,12 +1,12 @@
 [submodule "spark-backend"]
 	path = spark-backend
 	url = git@github.com:sumca252/spark-backend.git
-[submodule "spark-program"]
-	path = spark-program
-	url = git@github.com:sumca252/spark-program.git
 [submodule "spark-app"]
 	path = spark-app
 	url = git@github.com:sumca252/spark-app.git
 [submodule "spark-frontend"]
 	path = spark-frontend
 	url = git@github.com:sumca252/spark-frontend.git
+[submodule "spark-program"]
+	path = spark-program
+	url = https://github.com/Rahn20/spark-program
