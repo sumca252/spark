@@ -14,20 +14,19 @@ services:
         ports:
             - "3306:3306"
         env_file:
-            - ./spark-backend/.env.dev
+            - ./spark-backend/.env
         volumes:
             - mysql_data:/var/lib/mysql
             - ./spark-backend/db:/docker-entrypoint-initdb.d
         networks:
             - spark
+
     spark-backend:
         image: isal20/spark-backend:1.0.0
         restart: always
         env_file:
-            - ./spark-backend/.env.dev
+            - ./spark-backend/.env
         ports:
             - "${PORT}:1337"
-        volumes:
-            - ./spark-backend:/app
         networks:
             - spark
