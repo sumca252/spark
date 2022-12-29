@@ -10,3 +10,6 @@
 [submodule "spark-program"]
 	path = spark-program
 	url = https://github.com/Rahn20/spark-program
+[submodule "spark-webclient"]
+	path = spark-webclient
+	url = https://github.com/Rahn20/spark-webclient.git
