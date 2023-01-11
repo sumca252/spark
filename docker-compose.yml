@@ -31,16 +31,28 @@ services:
         networks:
             - spark
 
-    spark-program:
-        image: ranim04/spark-program:1.0.0      # image has not been created yet
-        container_name: "spark-program"
+
+    spark-webclient:
+        image: ranim04/spark-webclient:customer  # image has not been created yet
+        container_name: "spark-webclient"
+        ports:
+            - "1338:1338"
         networks:
             - spark
         links:
             - spark-backend
 
+
+    #spark-program:
+    #    image: ranim04/spark-program:main
+    #    container_name: "spark-program"
+    #    networks:
+    #        - spark
+    #    links:
+    #        - spark-backend
+
     spark-simulation:
-        image: ranim04/spark-program:simulation     # image has not been created yet
+        image: ranim04/spark-program:simulation
         container_name: "spark-simulation"
         networks:
             - spark
