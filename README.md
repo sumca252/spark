@@ -18,20 +18,10 @@ task config
 ```bash
 task run
 ```
-
-### Start Specific Service
-```bash
-task run-<service_name> ...
-```
-### Stop Specific Service
-```bash
-task stop-<service_name> ...
-```
 ### Stop All Services
 ```bash 
 task stop
 ```
-
 ### Restart All Services
 
 ```bash
@@ -43,8 +33,6 @@ task restart
 ```bash 
 task logs
 ```
-
-
 ### Status
 
 ```bash
