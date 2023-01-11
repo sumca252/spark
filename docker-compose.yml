@@ -7,6 +7,19 @@ volumes:
     mysql_data: {}
 
 services:
+    watchtower:
+        image: containrrr/watchtower
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+        ports:
+            - "80:80"
+        networks:
+            - spark
+
     spark-database:
         image: isal20/spark-backend:db
         container_name: spark-database
@@ -19,45 +32,175 @@ services:
         networks:
             - spark
 
-    spark-backend:
+    spark-backend1:
         image: isal20/spark-backend:1.0.0
+        container_name: spark-backend1
         restart: always
         env_file:
             - ./spark-backend/.env
-        ports:
-            - "${PORT:-1337}:1337"
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
-            - "MYSQL_USER=${MYSQL_USER:-spark}"
-            - "MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}"
-            - "MYSQL_DATABASE=${MYSQL_DATABASE:-sparkdb}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend2:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend2
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend3:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend3
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend4:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend4
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend5:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend5
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend6:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend6
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend7:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend7
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend8:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend8
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend9:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend9
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+        networks:
+            - spark
+        depends_on:
+            - spark-database
+    spark-backend10:
+        image: isal20/spark-backend:1.0.0
+        container_name: spark-backend10
+        restart: always
+        env_file:
+            - ./spark-backend/.env
+        environment:
+            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+            - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
             - spark-database
 
-    spark-webclient:
-        image: ranim04/spark-webclient:customer # image has not been created yet
-        container_name: "spark-webclient"
-        ports:
-            - "1338:1338"
-        networks:
-            - spark
-        links:
-            - spark-backend
-
-    #spark-program:
-    #    image: ranim04/spark-program:main
-    #    container_name: "spark-program"
+    #spark-webclient:
+    #    image: ranim04/spark-webclient:customer
+    #    container_name: "spark-webclient"
+    #    build:
+    #        context: ./spark-webclient
+    #        dockerfile: Dockerfile
+    #    ports:
+    #        - "1338:1338"
     #    networks:
     #        - spark
     #    links:
     #        - spark-backend
 
+    spark-program:
+        image: ranim04/spark-program:main
+        container_name: "spark-program"
+        build:
+            context: ./spark-program
+            dockerfile: Dockerfile
+        networks:
+            - spark
+
     spark-simulation:
         image: ranim04/spark-program:simulation
         container_name: "spark-simulation"
+        build:
+            context: ./spark-program
+            dockerfile: Dockerfile
+
         networks:
             - spark
-        links:
-            - spark-backend
