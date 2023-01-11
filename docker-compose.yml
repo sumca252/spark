@@ -192,7 +192,7 @@ services:
         container_name: "spark-program"
         build:
             context: ./spark-program
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile_main
         networks:
             - spark
 
@@ -201,7 +201,7 @@ services:
         container_name: "spark-simulation"
         build:
             context: ./spark-program
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile_simulation
 
         networks:
             - spark
