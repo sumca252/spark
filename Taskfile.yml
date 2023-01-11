@@ -16,20 +16,11 @@ tasks:
       - echo "Stopping the backend..."
       - docker-compose -f docker-compose.yml down --remove-orphans
 
-  stop-backend:
-    cmds:
-      - echo "Stopping the backend..."
-      - docker-compose -f docker-compose.yml down
   restart:
     cmds:
       - echo "Restarting the backend..."
       - docker-compose -f docker-compose.yml restart  
       
-  run-backend:
-    cmds:
-      - echo "Starting the backend..."
-      - docker-compose -f docker-compose.yml up -d spark-backend --remove-orphans
-
   logs:
     cmds:
       - echo "Showing the logs..."
