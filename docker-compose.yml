@@ -42,7 +42,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -56,7 +56,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -70,7 +70,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -84,7 +84,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -98,7 +98,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -112,7 +112,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -126,7 +126,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -140,7 +140,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -154,7 +154,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
@@ -168,7 +168,7 @@ services:
         environment:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL4=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
         networks:
             - spark
         depends_on:
