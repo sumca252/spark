@@ -4,40 +4,40 @@ tasks:
   config:
     cmds:
       - echo "Checking the configuration..."
-      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml config
+      - docker-compose -f docker-compose.yml config
 
   run:
     cmds:
       - echo "Starting the backend..."
-      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+      - docker-compose -f docker-compose.yml up -d
 
   stop:
     cmds:
       - echo "Stopping the backend..."
-      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
+      - docker-compose -f docker-compose.yml down
 
   stop-backend:
     cmds:
       - echo "Stopping the backend..."
-      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
+      - docker-compose -f docker-compose.yml down
   restart:
     cmds:
       - echo "Restarting the backend..."
-      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml restart  
+      - docker-compose -f docker-compose.yml restart  
       
   run-backend:
     cmds:
       - echo "Starting the backend..."
-      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+      - docker-compose -f docker-compose.yml up -d spark-backend --remove-orphans
 
   logs:
     cmds:
       - echo "Showing the logs..."
-      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml logs -f 
+      - docker-compose -f docker-compose.yml logs -f 
   status:
     cmds:
       - echo "Showing the status..."
-      - docker-compose -f docker-compose.yml -f docker-compose.dev.yml ps
+      - docker-compose -f docker-compose.yml ps
 
 
   
