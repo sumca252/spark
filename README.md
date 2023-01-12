@@ -39,15 +39,11 @@ task logs
 task status
 ```
 
-# How to run it with task docker compose commands?
+# How to run it with docker compose commands?
 
 ## dev
 ```
 docker-compose -f docker-compose.dev.yml up -d
 ```
 
-## prod
-```
-docker-compose -f docker-compose.yml up -d
-```
 
