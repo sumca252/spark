@@ -8,7 +8,7 @@ All Spark services started from a single repository
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 
-# How to run it?
+# How to run it with task command?
 ### Check if environment variables are set
 ```bash
 task config
@@ -39,5 +39,15 @@ task logs
 task status
 ```
 
+# How to run it with task docker compose commands?
 
+## dev
+```
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+## prod
+```
+docker-compose -f docker-compose.yml up -d
+```
 
