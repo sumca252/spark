@@ -1,0 +1,44 @@
+version: "3"
+networks:
+  spark:
+
+
+volumes:
+  mysql_data: {}
+
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  spark-database:
+    image: isal20/spark-backend:db
+    container_name: spark-database
+    hostname: spark-database
+    restart: always
+    env_file:
+      - ./spark-backend/.env
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - spark
+
+  spark-backend1:
+    image: isal20/spark-backend:1.0.0
+    container_name: spark-backend1
+    restart: always
+    env_file:
+      - ./spark-backend/.env
+    ports:
+      - "1337:1337"
+    environment:
+      - "PORT=1337"
+      - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
+      - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
+      - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+    networks:
+      - spark
+    depends_on:
+      - spark-database

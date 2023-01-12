@@ -10,6 +10,10 @@ tasks:
     cmds:
       - echo "Starting the backend..."
       - docker-compose -f docker-compose.yml up -d
+  run-dev:
+    cmds:
+      - echo "Starting the backend..."
+      - docker-compose -f docker-compose.dev.yml up -d
 
   stop:
     cmds:
