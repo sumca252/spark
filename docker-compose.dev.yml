@@ -1,10 +1,10 @@
 version: "3"
 networks:
-  spark:
+    spark:
 
 
 volumes:
-  mysql_data: {}
+    mysql_data: {}
 
 services:
     watchtower:
@@ -35,15 +35,15 @@ services:
             - "1337:1337"
         environment:
             - "PORT=1337"
-            - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
-            - "FRONTEND_URL=${FRONTEND_URL:-http://localhost:1338}"
-            - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:8040}"
+            - "MYSQL_HOST=spark-database"
+            - "FRONTEND_URL=spark-webclient:1338"
+            - "WEBADMIN_URL=spark-webadmin:3000"
         networks:
             - spark
+        links:
+            - spark-database
         depends_on:
             - spark-database
-
-
     spark-webclient:
         image: ranim04/spark-webclient:customer
         container_name: "spark-webclient"
@@ -52,5 +52,19 @@ services:
             dockerfile: Dockerfile
         ports:
             - "1338:1338"
+        networks:
+            - spark
+
+    spark-webadmin:
+        container_name: "spark-webadmin"
+        build:
+            context: ./spark-frontend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        env_file:
+            - ./spark-frontend/.env
+        environment:
+            - "DEV_API_BASE_URL=${DEV_API_BASE_URL}"
         networks:
             - spark
