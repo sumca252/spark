@@ -1,5 +1,4 @@
 version: '3'
-
 tasks:
   config:
     cmds:
@@ -8,8 +7,14 @@ tasks:
 
   run:
     cmds:
-      - echo "Starting the backend..."
-      - docker-compose -f docker-compose.yml up -d
+      - echo "Starting the backend and clients..."
+      - docker-compose -f docker-compose.yml up -d nginx spark-database spark-backend1 spark-backend2 spark-backend3 spark-backend4 spark-backend5 spark-backend6 spark-backend7 spark-backend8 spark-backend9 spark-backend10  spark-adminclient spark-webclient
+  
+  run-simulation:
+    cmds:
+      - echo "Starting the simulation..."
+      - docker-compose -f docker-compose.yml up -d spark-simulation
+  
   run-dev:
     cmds:
       - echo "Starting the backend..."
@@ -29,6 +34,7 @@ tasks:
     cmds:
       - echo "Showing the logs..."
       - docker-compose -f docker-compose.yml logs -f 
+  
   status:
     cmds:
       - echo "Showing the status..."
