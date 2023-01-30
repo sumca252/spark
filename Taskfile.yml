@@ -4,11 +4,10 @@ tasks:
     cmds:
       - echo "Checking the configuration..."
       - docker-compose -f docker-compose.yml config
-
   run:
     cmds:
       - echo "Starting the backend and clients..."
-      - docker-compose -f docker-compose.yml up -d nginx spark-database spark-backend1 spark-backend2 spark-backend3 spark-backend4 spark-backend5 spark-backend6 spark-backend7 spark-backend8 spark-backend9 spark-backend10  spark-adminclient spark-webclient
+      - docker-compose -f docker-compose.yml up -d nginx spark-database spark-backend1 spark-backend2 spark-backend3 spark-backend4 spark-backend5 spark-backend6 spark-backend7 spark-backend8 spark-backend9 spark-backend10  spark-adminclient spark-webclient 
   
   run-simulation:
     cmds:

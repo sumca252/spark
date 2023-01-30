@@ -13,6 +13,7 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
     nginx:
+        container_name: spark-nginx
         restart: always
         build:
             context: ./nginx
@@ -43,6 +44,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -57,6 +59,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -71,6 +74,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -85,6 +89,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -99,6 +104,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -113,6 +119,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -127,6 +134,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -141,6 +149,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -155,6 +164,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -169,6 +179,7 @@ services:
             - "MYSQL_HOST=${MYSQL_HOST:-spark-database}"
             - "WEBCLIENT_URL=${WEBCLIENT_URL:-http://localhost:1338}"
             - "ADMINCLIENT_URL=${ADMINCLIENT_URL:-http://localhost:4000}"
+            - "APP_URL=${APP_URL:-http://localhost:8000}"
         networks:
             - spark
         depends_on:
@@ -177,15 +188,16 @@ services:
     spark-adminclient:
         image: isal20/spark-adminclient:admin
         container_name: "spark-adminclient"
-        build:
-            context: ./spark-frontend
-            dockerfile: Dockerfile
         ports:
-            - "1339:1339"
+            - "3000:3000"
+        environment:
+            - "API_URL=${API_URL:-http://localhost}"
+            - "PROD_API_BASE_URL=${PROD_API_BASE_URL:-http://localhost/api/v1}"
+            - "PROD_SOCKET_API_BASE_URL=${PROD_SOCKET_API_BASE_URL:-http://localhost}"
         networks:
             - spark
         links:
-            - spark-backend
+            - nginx
 
     spark-webclient:
         image: ranim04/spark-webclient:customer
@@ -198,7 +210,7 @@ services:
         networks:
             - spark
         links:
-            - spark-backend
+            - nginx
 
     spark-simulation:
         image: ranim04/spark-program:simulation
@@ -206,5 +218,7 @@ services:
         build:
             context: ./spark-program
             dockerfile: Dockerfile_simulation
+        environment:
+            - "API_URL=${API_URL:-http://localhost}"
         networks:
             - spark
