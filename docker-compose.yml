@@ -174,27 +174,31 @@ services:
         depends_on:
             - spark-database
 
-    #spark-webclient:
-    #    image: ranim04/spark-webclient:customer
-    #    container_name: "spark-webclient"
-    #    build:
-    #        context: ./spark-webclient
-    #        dockerfile: Dockerfile
-    #    ports:
-    #        - "1338:1338"
-    #    networks:
-    #        - spark
-    #    links:
-    #        - spark-backend
-
-    spark-program:
-        image: ranim04/spark-program:main
-        container_name: "spark-program"
+    spark-adminclient:
+        image: isal20/spark-adminclient:admin
+        container_name: "spark-adminclient"
         build:
-            context: ./spark-program
-            dockerfile: Dockerfile_main
+            context: ./spark-frontend
+            dockerfile: Dockerfile
+        ports:
+            - "1339:1339"
         networks:
             - spark
+        links:
+            - spark-backend
+
+    spark-webclient:
+        image: ranim04/spark-webclient:customer
+        container_name: "spark-webclient"
+        build:
+            context: ./spark-webclient
+            dockerfile: Dockerfile
+        ports:
+            - "1338:1338"
+        networks:
+            - spark
+        links:
+            - spark-backend
 
     spark-simulation:
         image: ranim04/spark-program:simulation
@@ -202,6 +206,5 @@ services:
         build:
             context: ./spark-program
             dockerfile: Dockerfile_simulation
-
         networks:
             - spark
